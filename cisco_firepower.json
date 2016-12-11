@@ -1,0 +1,129 @@
+{
+  "appid"       : "F501CF42-46D4-4023-A156-208640865AA8",
+  "name"      : "Cisco Firepower",
+  "description" : "This app interfaces with Cisco Firepower devices to add or remove IP's or networks to a Firepower Network Group Object, which is configured with an ACL",
+  "publisher": "World Wide Technology",
+  "package_name": "phantom_cisco_firepower_1.1",
+  "type": "Firewall",
+  "license": "Copyright (c) World Wide Technology, Inc. 2016",
+  "main_module" : "cisco_firepower_connector.pyc",
+  "app_version": "1.1.8",
+  "utctime_updated": "2016-12-01T09:02:18.000000Z",
+  "product_vendor": "Cisco Systems",
+  "product_name": "Cisco Firepower",
+  "product_version_regex": ".*",
+  "min_phantom_version": "1.0.240",
+  "logo": "cisco.png",
+  "configuration": {
+    "firepower_host": {
+      "description": "Device IP/Hostname",
+      "order": 0,
+      "data_type": "string",
+      "required": true
+    },
+    "ph": {
+      "data_type": "ph",
+      "order": 1
+    },
+    "username": {
+      "description": "User with access to the Firepower node",
+      "data_type": "string",
+      "order": 2,
+      "required": true
+    },
+    "password": {
+      "description": "Password",
+      "data_type": "password",
+      "order": 3,
+      "required": true
+    },
+    "domain_name": {
+      "description": "Firepower Domain",
+      "data_type": "string",
+      "order": 4,
+      "required": true
+    },
+    "network_group_object": {
+      "description": "Network Group Object",
+      "data_type": "string",
+      "order": 5,
+      "required": true
+    }
+  },
+  "actions": [
+    {
+      "action": "test connectivity",
+      "description": "Validate the asset configuration for connectivity",
+      "verbose": "This action logs into the Cisco Firepower device using a REST call",
+      "type": "test",
+      "identifier": "test connectivity",
+      "read_only": true,
+      "parameters": {},
+      "output": [],
+      "versions": "EQ(*)"
+    },
+    {
+      "action": "list networks in object",
+      "description": "Lists currently blocked networks",
+      "type": "investigate",
+      "identifier": "list_networks",
+      "read_only": true,
+      "parameters": {},
+      "render": {
+        "width": 12,
+        "title": "Static Routes",
+        "type": "table",
+        "height": 20
+      },
+      "output": [
+        {
+          "data_path": "action_result.data.*.network",
+          "data_type": "string",
+          "column_name": "Blocked Network",
+          "column_order": 0
+        },
+        {
+          "data_path": "action_result.status",
+          "data_type": "string"
+        },
+        {
+          "data_path": "action_result.message",
+          "data_type": "string"
+        }
+      ],
+      "versions": "EQ(*)"
+    },
+    {
+      "action": "block ip",
+      "description": "Blocks an IP network",
+      "type": "contain",
+      "identifier": "block_ip",
+      "read_only": true,
+      "parameters": {
+         "destination_network": {
+           "description": "IP/network to block (X.X.X.X/NM)",
+           "data_type": "string",
+           "required": true
+         }
+      },
+      "output": [],
+      "versions": "EQ(*)"
+    },
+    {
+      "action": "unblock ip",
+      "description": "Unblocks an IP network",
+      "type": "correct",
+      "identifier": "unblock_ip",
+      "read_only": true,
+      "parameters": {
+         "destination_network": {
+            "description": "IP/network to unBlock (X.X.X.X/NM)",
+            "data_type": "string",
+            "required": true
+         }
+       },
+       "output": [],
+       "versions": "EQ(*)"
+     }
+  ]
+}
