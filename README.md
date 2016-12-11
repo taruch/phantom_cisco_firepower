@@ -1,67 +1,49 @@
-# phantom_cisco_csr_rtbh
-
-Cisco Cloud Services Router
+Cisco Firepower
 
 Publisher: World Wide Technology
-App Version: 1.3
-Product Vendor: Cisco
-Product Name: Cisco CSR
+App Version: 1.1.8
+Product Vendor: Cisco Systems
+Product Name: Cisco Firepower
 Product Version Supported (regex): ".*"
-This app interfaces with Cisco CSR devices, and supports containment actions
-like 'block network', correct actions like 'unblock network', and investigative
-actions like 'list blocked networks' on a Cisco CSR device. It uses the REST
-interface to log on and perform its actions. The target host is required to
-have the REST interface enabled.
+This app interfaces with Cisco Firepower devices to add or remove IP's or
+networks to a Firepower Network Group Object, which is configured with an ACL
 
 Configuration Variables
 
 The below configuration variables are required for this App to operate on Cisco
-CSR. These are specified when configuring an asset in Phantom.
+Firepower. These are specified when configuring an asset in Phantom.
 
 VARIABLE    REQUIRED    TYPE    DESCRIPTION
+username    required    string    User with access to the Firepower node
+network_group_object    required    string    Network Group Object
+domain_name    required    string    Firepower Domain
+firepower_host    required    string    Device IP/Hostname
 password    required    password    Password
-user    required    string    User with access to the trigger node
-route_to_null    required    string    Null Route IP (x.x.x.x)
-trigger_host    required    string    Trigger Host
 Supported Actions
 
-unblock network - Unblocks an IP/network
-block network - Blocks an IP/network
-list blocked networks - Lists currently blocked networks
 test connectivity - Validate the asset configuration for connectivity
-action: 'unblock network'
+list networks in object - Lists currently blocked networks
+block ip - Blocks an IP network
+unblock ip - Unblocks an IP network
+action: 'test connectivity'
 
-Unblocks an IP/network
+Validate the asset configuration for connectivity
 
-Type: correct
+Type: test
 
 Read only: True
 
+This action logs into the Cisco Firepower device using a REST call
+
 Action Parameters
 
-PARAMETER    REQUIRED    DESCRIPTION    TYPE    CONTAINS
-destination-network    required    IP/network to unBlock (X.X.X.X/NM)    string    
+No parameters are required for this action
+
 Action Output
 
 No Output
 
-action: 'block network'
-
-Blocks an IP/network
-
-Type: contain
-
-Read only: True
-
-Action Parameters
-
-PARAMETER    REQUIRED    DESCRIPTION    TYPE    CONTAINS
-destination-network    required    IP/network to block (X.X.X.X/NM)    string    
-Action Output
-
-No Output
-
-action: 'list blocked networks'
+action: 'list networks in object'
 
 Lists currently blocked networks
 
@@ -76,24 +58,37 @@ No parameters are required for this action
 Action Output
 
 DATA PATH    TYPE    CONTAINS
-action_result.data.*.destination-network    string    
+action_result.data.*.network    string    
 action_result.status    string    
 action_result.message    string    
-action: 'test connectivity'
+action: 'block ip'
 
-Validate the asset configuration for connectivity
+Blocks an IP network
 
-Type: test
+Type: contain
 
 Read only: True
 
-This action logs into the Cisco Cloud Services Router (CSR) using a REST API
-call
+Action Parameters
+
+PARAMETER    REQUIRED    DESCRIPTION    TYPE    CONTAINS
+destination_network    required    IP/network to block (X.X.X.X/NM)    string    
+Action Output
+
+No Output
+
+action: 'unblock ip'
+
+Unblocks an IP network
+
+Type: correct
+
+Read only: True
 
 Action Parameters
 
-No parameters are required for this action
-
+PARAMETER    REQUIRED    DESCRIPTION    TYPE    CONTAINS
+destination_network    required    IP/network to unBlock (X.X.X.X/NM)    string    
 Action Output
 
 No Output
