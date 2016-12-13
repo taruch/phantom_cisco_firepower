@@ -100,7 +100,7 @@
       "identifier": "block_ip",
       "read_only": true,
       "parameters": {
-         "destination_network": {
+         "ip": {
            "description": "IP/network to block (X.X.X.X/NM)",
            "data_type": "string",
            "required": true
@@ -116,7 +116,7 @@
       "identifier": "unblock_ip",
       "read_only": true,
       "parameters": {
-         "destination_network": {
+         "ip": {
             "description": "IP/network to unBlock (X.X.X.X/NM)",
             "data_type": "string",
             "required": true

@@ -432,7 +432,7 @@ class FP_Connector(BaseConnector):
         self._get_Group_Object_Networks()
 
         try:
-            self.destination_network = param['destination_network']
+            self.destination_network = param['ip']
         except KeyError:
             self.debug_print("Error: {0}".format(KeyError))
         self.debug_print("Network: {0}".format(self.destination_network))
@@ -476,7 +476,7 @@ class FP_Connector(BaseConnector):
         self._get_Group_Object_Networks()
 
         try:
-            self.destination_network = param['destination_network']
+            self.destination_network = param['ip']
         except KeyError:
             self.debug_print("Error: {0}".format(KeyError))
 
