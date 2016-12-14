@@ -103,6 +103,7 @@
          "ip": {
            "description": "IP/network to block (X.X.X.X/NM)",
            "data_type": "string",
+           "primary": "true",
            "required": true
          }
       },
@@ -117,9 +118,10 @@
       "read_only": false,
       "parameters": {
          "ip": {
-            "description": "IP/network to unBlock (X.X.X.X/NM)",
-            "data_type": "string",
-            "required": true
+           "description": "IP/network to unBlock (X.X.X.X/NM)",
+           "data_type": "string",
+           "primary": "true",
+           "required": true
          }
        },
        "output": [],
