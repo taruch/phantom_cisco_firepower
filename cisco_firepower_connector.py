@@ -6,6 +6,7 @@
      author: Todd Ruch, World Wide Technology
      Revision history:
      21 November 2016  |  1.1 - initial release
+     See github page for updates and revision history.
 
      Copyright (c) 2016 World Wide Technology, Inc.
 
