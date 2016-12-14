@@ -458,7 +458,8 @@ class FP_Connector(BaseConnector):
                                                     self.destination_network))
         else:
             action_result.set_status(phantom.APP_ERROR)
-        self._deploy_config()
+        # Commented out until Cisco resolves TAC case
+        # self._deploy_config()
         return action_result.get_status()
 
     def delFromNetworkObject(self, param):
@@ -506,7 +507,8 @@ class FP_Connector(BaseConnector):
             # TODO: Figure out how to send a good error if the route
             # already exists (404 error)
             action_result.set_status(phantom.APP_ERROR)
-        self._deploy_config()
+        # Commented out until Cisco resolves TAC case
+        # self._deploy_config()
         return action_result.get_status()
 
     def handle_action(self, param):
