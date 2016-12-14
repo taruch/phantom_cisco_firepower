@@ -63,7 +63,7 @@
       "versions": "EQ(*)"
     },
     {
-      "action": "list networks in object",
+      "action": "list networks",
       "description": "Lists currently blocked networks",
       "type": "investigate",
       "identifier": "list_networks",
@@ -98,7 +98,7 @@
       "description": "Blocks an IP network",
       "type": "contain",
       "identifier": "block_ip",
-      "read_only": true,
+      "read_only": false ,
       "parameters": {
          "ip": {
            "description": "IP/network to block (X.X.X.X/NM)",
@@ -114,7 +114,7 @@
       "description": "Unblocks an IP network",
       "type": "correct",
       "identifier": "unblock_ip",
-      "read_only": true,
+      "read_only": false,
       "parameters": {
          "ip": {
             "description": "IP/network to unBlock (X.X.X.X/NM)",
