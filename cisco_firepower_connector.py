@@ -324,7 +324,7 @@ class FP_Connector(BaseConnector):
         self.debug_print("api_path: {0}".format(self.api_path))
 
         self.js = {'type': 'DeploymentRequest',
-                   'version': '1457566762351',
+                   'version': '0',
                    'forceDeploy': True,
                    'ignoreWarning': True,
                    'deviceList': (deployable_device_UUIDs)}
@@ -335,7 +335,7 @@ class FP_Connector(BaseConnector):
         json_resp = json.loads(resp)
         self.debug_print("Deployment result RAW:"
                          "{0}".format(json.dumps(json_resp, indent=4)))
-        if api_response.status_code in [requests.codes.ok]:
+        if api_response.status_code in [200, 202]:
             action_result.set_status(phantom.APP_SUCCESS,
                                      "Successfully deployed {0}".format(
                                                     self.destination_network))
@@ -459,7 +459,7 @@ class FP_Connector(BaseConnector):
         else:
             action_result.set_status(phantom.APP_ERROR)
         # Commented out until Cisco resolves TAC case
-        # self._deploy_config()
+        self._deploy_config()
         return action_result.get_status()
 
     def delFromNetworkObject(self, param):
@@ -508,7 +508,7 @@ class FP_Connector(BaseConnector):
             # already exists (404 error)
             action_result.set_status(phantom.APP_ERROR)
         # Commented out until Cisco resolves TAC case
-        # self._deploy_config()
+        self._deploy_config()
         return action_result.get_status()
 
     def handle_action(self, param):
