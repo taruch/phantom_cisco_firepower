@@ -7,8 +7,8 @@
   "type": "firewall",
   "license": "Copyright (c) World Wide Technology, Inc. 2016",
   "main_module" : "cisco_firepower_connector.pyc",
-  "app_version": "1.1.9",
-  "utctime_updated": "2016-12-01T09:02:18.000000Z",
+  "app_version": "1.1.11",
+  "utctime_updated": "2016-12-21T09:02:18.000000Z",
   "product_vendor": "Cisco Systems",
   "product_name": "Cisco Firepower",
   "product_version_regex": ".*",
@@ -101,6 +101,7 @@
       "read_only": false ,
       "parameters": {
          "ip": {
+           "contains": [ "ip", "ip network" ],
            "description": "IP/network to block (X.X.X.X/NM)",
            "data_type": "string",
            "primary": "true",
@@ -118,6 +119,7 @@
       "read_only": false,
       "parameters": {
          "ip": {
+           "contains": [ "ip", "ip network" ],
            "description": "IP/network to unBlock (X.X.X.X/NM)",
            "data_type": "string",
            "primary": "true",
